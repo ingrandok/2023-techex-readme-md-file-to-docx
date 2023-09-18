@@ -22,7 +22,7 @@ jobs:
 
       - name: Convert README.md to README.docx
         run: |
-          pandoc -f gfm -t docx -o README.docx ./README.md
+          pandoc -f gfm -t docx -o README.docx.does_not_exist ./README.md
           ls -l README.docx 
 
       - name: Create release of README.docx
@@ -46,17 +46,17 @@ jobs:
           asset_name: README.docx
           asset_content_type: application/octet-stream
 
-      #- name: Create Issue for a failed deployment
-      #  if: ${{ failure() }}
-      #  uses: dacbd/create-issue-action@main
-      #  with:
-      #    token: ${{ github.token }}
-      #    title: Action workflow failed.
-      #    body: |
-      #      ### Context
-      #      [Failed Run](https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }})
-      #      [Codebase](https://github.com/${{ github.repository }}/tree/${{ github.sha }})
-      #      Workflow name - `${{ github.workflow }}`
-      #      Job -           `${{ github.job }}`
-      #      status -        `${{ job.status }}`
-        
+      - name: Create Issue for a failed deployment
+        if: ${{ failure() }}
+        uses: dacbd/create-issue-action@main
+        with:
+          token: ${{ github.token }}
+          title: Action workflow failed.
+          body: |
+            ### Context
+            [Failed Run](https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }})
+            [Codebase](https://github.com/${{ github.repository }}/tree/${{ github.sha }})
+            Workflow name - `${{ github.workflow }}`
+            Job -           `${{ github.job }}`
+            status -        `${{ job.status }}`
+       
