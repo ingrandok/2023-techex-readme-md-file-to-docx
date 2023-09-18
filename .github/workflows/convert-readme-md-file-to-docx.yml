@@ -22,7 +22,7 @@ jobs:
 
       - name: Convert README.md to README.docx
         run: |
-          pandoc -f gfm -t docx -o README.docx.does_not_exist ./README.md
+          pandoc -f gfm -t docx -o README.docx. ./README.md.does_not_exist
           ls -l README.docx 
 
       - name: Create release of README.docx
