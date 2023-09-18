@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "mycoolpackage"
-version = "0.1.0"
+version = "0.1.1"
 description = ""
 authors = ["Kameron Ingrando <kameron.ingrando@uta.edu>"]
 readme = "README.md"
